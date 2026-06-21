@@ -1,0 +1,39 @@
+{
+    "name": "Gaussian Splat Editor",
+    "short_name": "GS Editor",
+    "description": "Gaussian Splat Editor is a browser-based Gaussian Splatting workstation for inspection, optimization, recording, and delivery workflows.",
+    "display": "fullscreen",
+    "start_url": "./",
+    "scope": "./",
+    "background_color": "#071112",
+    "icons": [
+        {
+            "src": "./static/icons/splatforge-icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "./static/images/screenshot-narrow.jpg",
+            "type": "image/jpeg",
+            "sizes": "2160x3840",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "./static/images/screenshot-wide.jpg",
+            "type": "image/jpeg",
+            "sizes": "3840x2160",
+            "form_factor": "wide"
+        }
+    ],
+    "file_handlers": [
+        {
+            "action": "./",
+            "accept": {
+                "application/ply": [".ply"]
+            }
+        }
+    ]
+}

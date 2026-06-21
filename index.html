@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gaussian Splat Editor</title>
+        <meta charset="utf-8" />
+        <base href="">
+        <link rel="manifest" href="./manifest.json">
+        <link rel="stylesheet" href="./index.css">
+        <link rel="shortcut icon" href="#">
+        <meta name="description" content="Gaussian Splat Editor is a browser-based Gaussian Splatting workstation for inspection, optimization, recording, and delivery workflows." />
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+        <!-- Service worker -->
+        <script>
+            const sw = navigator.serviceWorker;
+            if (sw) {
+                const isLocal = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+                if (isLocal) {
+                    sw.getRegistrations()
+                        .then(registrations => registrations.forEach(reg => reg.unregister()))
+                        .catch(err => console.log('failed to unregister service worker', err));
+
+                    if (window.caches) {
+                        caches.keys()
+                            .then(keys => keys.filter(key => key.startsWith('superSplat-')).forEach(key => caches.delete(key)))
+                            .catch(err => console.log('failed to clear service worker caches', err));
+                    }
+                } else {
+                    sw.register('./sw.js')
+                        .then(reg => console.log('service worker registered', reg))
+                        .catch(err => console.log('failed to register service worker', err));
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <script type="module" src="./index.js"></script>
+        <style>/* Father's Day 2025 — Navy Blue & Gold */
+        :root {
+            --bs-dark-blue: #0d1b2a;
+            --bs-navy: #1b263b;
+            --bs-accent: #d4a843;
+            --bs-gold-light: #f0d68a;
+            --bs-white: #e0e1dd;
+        }
+        #app-label, .app-label, [id="app-label"] {
+            color: var(--bs-accent) !important;
+            font-weight: 700 !important;
+            text-shadow: 0 0 8px rgba(212,168,67,0.3) !important;
+        }
+        .pcui-top-bar, [class*="top-bar"], .pcui-header {
+            background: linear-gradient(135deg, var(--bs-dark-blue), var(--bs-navy)) !important;
+            border-bottom: 2px solid var(--bs-accent) !important;
+        }
+        .pcui-panel, [class*="sidebar"], .pcui-sidebar {
+            background: var(--bs-dark-blue) !important;
+            border-right: 1px solid var(--bs-accent) !important;
+        }
+        .pcui-button-regular, .pcui-button-primary {
+            background: var(--bs-accent) !important;
+            color: var(--bs-dark-blue) !important;
+            border-radius: 6px !important;
+        }
+        .pcui-button-regular:hover, .pcui-button-primary:hover {
+            background: var(--bs-gold-light) !important;
+        }
+        .pcui-top-menu-item { color: var(--bs-white) !important; }
+        .pcui-top-menu-item:hover, .pcui-top-menu-item.selected { color: var(--bs-accent) !important; }
+        .pcui-status-bar, [class*="status"] {
+            background: var(--bs-navy) !important;
+            color: var(--bs-white) !important;
+            border-top: 1px solid var(--bs-accent) !important;
+        }
+        .pcui-dialog-content { background: var(--bs-dark-blue) !important; color: var(--bs-white) !important; }
+        .pcui-dialog-header {
+            background: linear-gradient(90deg, var(--bs-navy), var(--bs-dark-blue)) !important;
+            border-bottom: 1px solid var(--bs-accent) !important;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bs-dark-blue); }
+        ::-webkit-scrollbar-thumb { background: var(--bs-accent); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--bs-gold-light); }
+    </style>
+    </body>
+</html>
