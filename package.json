@@ -50,7 +50,7 @@
         "i18next-http-backend": "3.0.6",
         "mediabunny": "1.46.0",
         "playcanvas": "2.19.2",
-        "postcss": "8.5.15",
+        "postcss": "8.5.25",
         "rollup": "4.61.0",
         "rollup-plugin-scss": "4.0.1",
         "sass": "1.100.0",
